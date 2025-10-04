@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-py"
+  recursive_type_depth = 5
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+}
+
+model MapFires {
+  id  Int   @id @default(autoincrement())
+  latitude Float
+  longitude Float
+  confidence  Float
+  confidence_lvl  String  @db.Char(1)
+  satellite String
+  acq_datetime  DateTime
+  daynight  String    @db.Char(1)
+  geom_wkt  String
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
