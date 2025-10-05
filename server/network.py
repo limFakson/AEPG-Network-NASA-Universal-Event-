@@ -32,7 +32,7 @@ async def power_for_point(lat: float, lon: float, start_date: str, end_date: str
         "community": COMMUNITY,
         "format": "JSON"
     }
-    with await httpx.AsyncClient() as client:
+    with httpx.AsyncClient() as client:
         response = await client.get(POWER_API_URL, params=params, timeout=30)
         await response.raise_for_status()
 
