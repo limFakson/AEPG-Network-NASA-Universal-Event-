@@ -19,7 +19,7 @@ async def firms_pipeline():
 async def jobstores():
     scheduler.add_job(
         firms_pipeline,
-        CronTrigger(hour="4,14", timezone=pytz.UTC),
+        CronTrigger(hour="4,21", timezone=pytz.UTC),
         id="start_firm_pipeline_job"
     )
     scheduler.start()
