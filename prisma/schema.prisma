@@ -20,4 +20,23 @@ model MapFires {
   geom_wkt  String
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
+
+  // Reverse relation
+  weather         WeatherObservation[]
+}
+
+model WeatherObservation {
+  id         Int       @id @default(autoincrement())
+  fire_id    Int
+  obs_time   DateTime   @db.Timestamptz(6)  // observation time (UTC)
+  parameter  String     @db.VarChar(64)     // e.g., T2M, WS2M
+  value      Float?
+  units      String?    @db.VarChar(16)
+  source     String     @default("NASA_POWER") @db.VarChar(64)
+
+  // Relation to MapFires
+  fire       MapFires  @relation(fields: [fire_id], references: [id], onDelete: Cascade)
+
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 }

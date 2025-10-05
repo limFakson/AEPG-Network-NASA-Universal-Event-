@@ -9,7 +9,8 @@ import json
 from server.config.logging import logger
 from server.services.SchedulerService import jobstores, scheduler
 from server.model.map_fires import MapFireBase
-from server.schema.db_utils import get_fire_records
+from server.model.weather_obs import WeatherObservationBase
+from server.schema.db_utils import get_fire_records, retrieve_weather_data
 
 app = FastAPI(title="AEPG Network Server")
 
@@ -35,3 +36,12 @@ async def fetch_fire_detected(filter:Optional[str]=Query(None)):
     firm_data = await get_fire_records()
     
     return firm_data
+
+@app.get("/api/detect/power", response_model=List[WeatherObservationBase])
+async def fetch_power_data(fire:Optional[int]=Query(None)):
+    if fire is None:
+        pws_data =retrieve_weather_data()
+    else:
+        pws_data = retrieve_weather_data(fire)
+    
+    return pws_data
