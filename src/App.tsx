@@ -2,16 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
+import FireDetectionPage from './pages/FireDetectionPage';
 import { mockAirQualityData } from './data/mockData';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'landing' | 'dashboard'>('landing');
+  const [currentPage, setCurrentPage] = useState<'landing' | 'dashboard' | 'fire-detection'>('landing');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleEnterDashboard = () => {
     setIsLoading(true);
     setTimeout(() => {
       setCurrentPage('dashboard');
+      setIsLoading(false);
+    }, 1500);
+  };
+
+  const handleEnterFireDetection = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setCurrentPage('fire-detection');
       setIsLoading(false);
     }, 1500);
   };
@@ -31,7 +40,10 @@ function App() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <LandingPage onEnterDashboard={handleEnterDashboard} />
+            <LandingPage 
+              onEnterDashboard={handleEnterDashboard}
+              onEnterFireDetection={handleEnterFireDetection}
+            />
           </motion.div>
         )}
         
@@ -44,6 +56,18 @@ function App() {
             transition={{ duration: 0.5 }}
           >
             <Dashboard onBackToLanding={handleBackToLanding} />
+          </motion.div>
+        )}
+
+        {currentPage === 'fire-detection' && (
+          <motion.div
+            key="fire-detection"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
+          >
+            <FireDetectionPage onBackToLanding={handleBackToLanding} />
           </motion.div>
         )}
       </AnimatePresence>

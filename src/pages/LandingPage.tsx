@@ -7,9 +7,10 @@ import DataVisualization3D from '../components/ui/DataVisualization3D';
 
 interface LandingPageProps {
   onEnterDashboard: () => void;
+  onEnterFireDetection: () => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ onEnterDashboard }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ onEnterDashboard, onEnterFireDetection }) => {
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
 
   useEffect(() => {
@@ -115,21 +116,39 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnterDashboard }) => {
               real-time pollution levels and predictive analytics.
             </motion.p>
 
-            <motion.button
-              onClick={onEnterDashboard}
-              className="group relative px-12 py-4 bg-gradient-to-r from-nasa-blue to-neon-cyan rounded-full font-orbitron font-semibold text-lg text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/25"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="relative z-10 flex items-center space-x-3">
-                <Rocket className="w-5 h-5" />
-                <span>Launch Dashboard</span>
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan to-nasa-blue rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
-            </motion.button>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <motion.button
+                onClick={onEnterDashboard}
+                className="group relative px-12 py-4 bg-gradient-to-r from-nasa-blue to-neon-cyan rounded-full font-orbitron font-semibold text-lg text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/25"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 0.8 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10 flex items-center space-x-3">
+                  <Rocket className="w-5 h-5" />
+                  <span>Launch Dashboard</span>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan to-nasa-blue rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+              </motion.button>
+
+              <motion.button
+                onClick={onEnterFireDetection}
+                className="group relative px-12 py-4 bg-gradient-to-r from-red-500 to-orange-500 rounded-full font-orbitron font-semibold text-lg text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 1.0 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10 flex items-center space-x-3">
+                  <Satellite className="w-5 h-5" />
+                  <span>Fire Detection</span>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+              </motion.button>
+            </div>
           </div>
 
           {/* Right Side - 3D Globe */}
