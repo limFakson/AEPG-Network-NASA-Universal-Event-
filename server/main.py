@@ -40,8 +40,8 @@ async def fetch_fire_detected(filter:Optional[str]=Query(None)):
 @app.get("/api/detect/power", response_model=List[WeatherObservationBase])
 async def fetch_power_data(fire:Optional[int]=Query(None)):
     if fire is None:
-        pws_data =retrieve_weather_data()
+        pws_data = await retrieve_weather_data()
     else:
-        pws_data = retrieve_weather_data(fire)
+        pws_data = await retrieve_weather_data(fire)
     
     return pws_data
