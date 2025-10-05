@@ -16,4 +16,9 @@ class MapFireBase(BaseModel):
     updatedAt: datetime
 
     class Config:
-        orm_mode = True 
+        from_attributes = True 
+        
+        # Convert datetime to a nice human-readable string
+        json_encoders = {
+            datetime: lambda v: v.strftime("%b %d, %Y %H:%M UTC") if v else None
+        }

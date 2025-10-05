@@ -1,4 +1,5 @@
 import os, sys
+import asyncio
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 import pandas as pd
 from shapely.geometry import Point
@@ -24,7 +25,7 @@ class FirmsDataService():
     def __init__(self):
         self.data_file = "firm_data.csv"
     
-    def process(self):
+    async def process(self):
         self.df = pd.read_csv(self.data_file)
         
         # --- 🧹 Clean and Normalize ---
@@ -42,7 +43,7 @@ class FirmsDataService():
         )
          
         # --- filter out non north america data ----
-        self.df_filtered = self.region_filter()
+        self.df_filtered = await self.region_filter()
         
         
         # Optionally, filter by confidence threshold (e.g., only medium/high)
@@ -51,10 +52,10 @@ class FirmsDataService():
         # Drop duplicates
         self.df_filtered.drop_duplicates(subset=["latitude", "longitude", "acq_datetime"], inplace=True)
         
-        self.save_transformed()
+        await self.save_transformed()
         print("Process Done")
     
-    def region_filter(self):
+    async def region_filter(self):
         # --- 🌎 Filter for North America ---
         lat_min, lat_max = 5, 83
         lon_min, lon_max = -168, -52
@@ -66,9 +67,9 @@ class FirmsDataService():
         
         return df_filtered
     
-    def save_transformed(self):
+    async def save_transformed(self):
         for _,row in self.df_filtered.iterrows():
-            async_to_sync(save_fire_record)(
+            await save_fire_record(
                 latitude=row["latitude"],
                 longitude=row["longitude"],
                 confidence=row["confidence_num"],
@@ -81,4 +82,3 @@ class FirmsDataService():
         
         print(f"✅ Inserted {len(self.df_filtered)} North America fire detections into database.")
         
-FirmsDataService().process()
