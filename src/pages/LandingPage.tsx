@@ -54,41 +54,41 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnterDashboard, onEnterFire
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-6 py-12">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Header */}
         <motion.header
-          className="flex justify-between items-center mb-16"
+          className="flex flex-col sm:flex-row justify-between items-center mb-12 lg:mb-16 gap-4"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-nasa-blue to-neon-cyan rounded-lg flex items-center justify-center">
-              <Satellite className="w-6 h-6 text-white" />
+          <div className="flex items-center space-x-3 sm:space-x-4">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-nasa-blue to-neon-cyan rounded-lg flex items-center justify-center">
+              <Satellite className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
-            <h1 className="text-2xl font-orbitron font-bold text-gradient">
+            <h1 className="text-xl sm:text-2xl font-orbitron font-bold text-gradient">
               AeroSight
             </h1>
           </div>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3 sm:space-x-4">
             <img 
               src="https://www.nasa.gov/sites/default/files/thumbnails/image/nasa-logo-web-rgb.png" 
               alt="NASA" 
-              className="h-8 opacity-80"
+              className="h-6 sm:h-8 opacity-80"
             />
-            <span className="text-sm text-gray-400 font-rajdhani">
+            <span className="text-xs sm:text-sm text-gray-400 font-rajdhani">
               Space Apps Challenge
             </span>
           </div>
         </motion.header>
 
         {/* Hero Section with 3D Globe */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-20 min-h-[80vh]">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center mb-12 lg:mb-20 min-h-[70vh] lg:min-h-[80vh]">
           {/* Left Side - Text Content */}
-          <div className="text-center lg:text-left">
+          <div className="text-center lg:text-left order-2 lg:order-1">
             <motion.h1
-              className="text-5xl md:text-7xl font-orbitron font-black mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-orbitron font-black mb-4 lg:mb-6"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
@@ -97,7 +97,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnterDashboard, onEnterFire
             </motion.h1>
 
             <motion.p
-              className="text-xl md:text-2xl text-gray-300 font-rajdhani mb-6 leading-relaxed"
+              className="text-lg sm:text-xl lg:text-2xl text-gray-300 font-rajdhani mb-4 lg:mb-6 leading-relaxed"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
@@ -106,7 +106,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnterDashboard, onEnterFire
             </motion.p>
 
             <motion.p
-              className="text-lg text-gray-400 font-poppins mb-8 leading-relaxed"
+              className="text-sm sm:text-base lg:text-lg text-gray-400 font-poppins mb-6 lg:mb-8 leading-relaxed"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.6 }}
@@ -116,18 +116,18 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnterDashboard, onEnterFire
               real-time pollution levels and predictive analytics.
             </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
               <motion.button
                 onClick={onEnterDashboard}
-                className="group relative px-12 py-4 bg-gradient-to-r from-nasa-blue to-neon-cyan rounded-full font-orbitron font-semibold text-lg text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/25"
+                className="group relative px-8 sm:px-10 lg:px-12 py-3 lg:py-4 bg-gradient-to-r from-nasa-blue to-neon-cyan rounded-full font-orbitron font-semibold text-base lg:text-lg text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/25"
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, delay: 0.8 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="relative z-10 flex items-center space-x-3">
-                  <Rocket className="w-5 h-5" />
+                <span className="relative z-10 flex items-center justify-center space-x-2 lg:space-x-3">
+                  <Rocket className="w-4 h-4 lg:w-5 lg:h-5" />
                   <span>Launch Dashboard</span>
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan to-nasa-blue rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
@@ -135,15 +135,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnterDashboard, onEnterFire
 
               <motion.button
                 onClick={onEnterFireDetection}
-                className="group relative px-12 py-4 bg-gradient-to-r from-red-500 to-orange-500 rounded-full font-orbitron font-semibold text-lg text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25"
+                className="group relative px-8 sm:px-10 lg:px-12 py-3 lg:py-4 bg-gradient-to-r from-red-500 to-orange-500 rounded-full font-orbitron font-semibold text-base lg:text-lg text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25"
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, delay: 1.0 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="relative z-10 flex items-center space-x-3">
-                  <Satellite className="w-5 h-5" />
+                <span className="relative z-10 flex items-center justify-center space-x-2 lg:space-x-3">
+                  <Satellite className="w-4 h-4 lg:w-5 lg:h-5" />
                   <span>Fire Detection</span>
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
@@ -153,7 +153,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnterDashboard, onEnterFire
 
           {/* Right Side - 3D Globe */}
           <motion.div
-            className="relative h-80 md:h-96 lg:h-[400px] w-full"
+            className="relative h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[400px] w-full order-1 lg:order-2"
             initial={{ opacity: 0, x: 50, scale: 0.8 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -162,25 +162,25 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnterDashboard, onEnterFire
             
             {/* Floating stats overlay */}
             <motion.div
-              className="absolute top-4 left-4 glass-panel rounded-lg p-3"
+              className="absolute top-2 left-2 sm:top-4 sm:left-4 glass-panel rounded-lg p-2 sm:p-3"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.5 }}
             >
               <div className="text-center">
-                <div className="text-2xl font-orbitron font-bold text-neon-cyan">5</div>
+                <div className="text-lg sm:text-xl lg:text-2xl font-orbitron font-bold text-neon-cyan">5</div>
                 <div className="text-xs text-gray-400 font-rajdhani">Cities Monitored</div>
               </div>
             </motion.div>
 
             <motion.div
-              className="absolute bottom-4 left-4 glass-panel rounded-lg p-3"
+              className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 glass-panel rounded-lg p-2 sm:p-3"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.7 }}
             >
               <div className="text-center">
-                <div className="text-2xl font-orbitron font-bold text-green-400">Real-time</div>
+                <div className="text-lg sm:text-xl lg:text-2xl font-orbitron font-bold text-green-400">Real-time</div>
                 <div className="text-xs text-gray-400 font-rajdhani">Data Updates</div>
               </div>
             </motion.div>
@@ -201,23 +201,23 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnterDashboard, onEnterFire
 
         {/* 3D Data Visualization Section */}
         <motion.div
-          className="mb-20"
+          className="mb-16 lg:mb-20 px-4"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.2 }}
         >
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-gradient mb-6">
+          <div className="text-center mb-8 lg:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-orbitron font-bold text-gradient mb-4 lg:mb-6">
               Live Air Quality Data
             </h2>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+            <p className="text-sm sm:text-base lg:text-lg text-gray-400 max-w-3xl mx-auto">
               Experience real-time air quality metrics from major cities around the world through our immersive 3D visualization
             </p>
           </div>
           
           <div className="max-w-6xl mx-auto">
             <motion.div
-              className="glass-panel-glow rounded-2xl overflow-hidden h-64 md:h-80 lg:h-96"
+              className="glass-panel-glow rounded-2xl overflow-hidden h-48 sm:h-64 md:h-80 lg:h-96"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 1.4 }}
@@ -229,7 +229,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnterDashboard, onEnterFire
 
         {/* Features Grid */}
         <motion.div
-          className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8 max-w-6xl mx-auto px-4"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.6 }}
@@ -256,19 +256,19 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnterDashboard, onEnterFire
           ].map((feature, index) => (
             <motion.div
               key={feature.title}
-              className="glass-panel-glow p-8 text-center group hover:scale-105 transition-all duration-300"
+              className="glass-panel-glow p-4 lg:p-8 text-center group hover:scale-105 transition-all duration-300"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.8 + index * 0.2 }}
               whileHover={{ y: -10 }}
             >
-              <div className={`w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br ${feature.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                <feature.icon className="w-8 h-8 text-white" />
+              <div className={`w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 lg:mb-6 rounded-full bg-gradient-to-br ${feature.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
               </div>
-              <h3 className="text-xl font-orbitron font-semibold mb-4 text-gradient">
+              <h3 className="text-lg sm:text-xl font-orbitron font-semibold mb-3 lg:mb-4 text-gradient">
                 {feature.title}
               </h3>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
                 {feature.description}
               </p>
             </motion.div>
@@ -277,15 +277,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onEnterDashboard, onEnterFire
 
         {/* Footer */}
         <motion.footer
-          className="text-center mt-20 text-gray-500"
+          className="text-center mt-16 lg:mt-20 text-gray-500 px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 2 }}
         >
-          <p className="font-rajdhani">
-            Built for NASA Space Apps Challenge 2024 • Powered by TEMPO Satellite Data
+          <p className="font-rajdhani text-sm lg:text-base">
+            Built for NASA Space Apps Challenge 2025 • Powered by TEMPO Satellite Data
           </p>
-          <p className="text-sm mt-2">
+          <p className="text-xs lg:text-sm mt-2">
             Real-time air quality monitoring from space to ground
           </p>
         </motion.footer>
